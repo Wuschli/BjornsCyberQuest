@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  bjornscyberquest.server:
+    image: ${DOCKER_REGISTRY-}bjornscyberquestserver
+    build:
+      context: .
+      dockerfile: BjornsCyberQuest/Server/Dockerfile
