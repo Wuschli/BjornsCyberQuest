@@ -9,6 +9,8 @@ WORKDIR /src
 COPY ["BjornsCyberQuest/Server/BjornsCyberQuest.Server.csproj", "BjornsCyberQuest/Server/"]
 COPY ["BjornsCyberQuest/Shared/BjornsCyberQuest.Shared.csproj", "BjornsCyberQuest/Shared/"]
 COPY ["BjornsCyberQuest/Client/BjornsCyberQuest.Client.csproj", "BjornsCyberQuest/Client/"]
+COPY ["XTerm/src/Blazor.Extensions.XTerm/Blazor.Extensions.XTerm.csproj", "XTerm/src/Blazor.Extensions.XTerm/"]
+COPY ["XTerm/src/Blazor.Extensions.XTerm.JS/Blazor.Extensions.XTerm.JS.csproj", "XTerm/src/Blazor.Extensions.XTerm.JS/"]
 RUN dotnet restore "BjornsCyberQuest/Server/BjornsCyberQuest.Server.csproj"
 COPY . .
 WORKDIR "/src/BjornsCyberQuest/Server"
