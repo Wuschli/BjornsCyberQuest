@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.SignalR.Client;
 
 namespace BjornsCyberQuest.Client.Pages
 {
-    public partial class Index
+    public partial class Terminal
     {
         private XTerm _terminal;
         private string _input = string.Empty;
+        private bool _ready;
 
         private readonly TerminalOptions _options = new()
         {
@@ -29,17 +30,26 @@ namespace BjornsCyberQuest.Client.Pages
                 .Build();
 
             _hubConnection.On<string>(nameof(ITerminalHub.ReceiveOutput), async output => { await _terminal.Write(output); });
+            _hubConnection.On<string>(nameof(ITerminalHub.Ready), async prompt =>
+            {
+                _ready = true;
+                await _terminal.Write(prompt);
+            });
 
             await _hubConnection.StartAsync();
         }
 
         private async Task OnKeyPress(KeyboardEventArgs keyPress)
         {
+            if (!_ready)
+                return;
+
             Console.WriteLine(keyPress.Key);
             var printable = !keyPress.AltKey && !keyPress.CtrlKey && !keyPress.MetaKey;
 
             if (keyPress.Key == "Enter")
             {
+                _ready = false;
                 await _hubConnection.SendAsync(nameof(ITerminal.SendInput), _input);
                 _input = string.Empty;
                 await _terminal.WriteLine();
@@ -63,12 +73,6 @@ namespace BjornsCyberQuest.Client.Pages
                 await _terminal.Write(keyPress.Key);
                 return;
             }
-        }
-
-        private Task OnLineFeed()
-        {
-            Console.WriteLine("---");
-            return _terminal.ScrollLines();
         }
 
         public async ValueTask DisposeAsync()
