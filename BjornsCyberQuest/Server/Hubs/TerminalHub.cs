@@ -10,6 +10,10 @@ namespace BjornsCyberQuest.Server.Hubs
     {
         public override async Task OnConnectedAsync()
         {
+            if (!Context.Items.TryGetValue("host", out var host))
+                Context.Items["host"] = "localhost";
+            if (!Context.Items.TryGetValue("directory", out var directory))
+                Context.Items["directory"] = "~";
             await Ready();
         }
 
@@ -21,7 +25,18 @@ namespace BjornsCyberQuest.Server.Hubs
 
         private async Task Ready()
         {
-            await Clients.Caller.Ready(">");
+            var prompt = "";
+            if (Context.Items.TryGetValue("user", out var user))
+                prompt += $"{user}@";
+
+            if (Context.Items.TryGetValue("host", out var host))
+                prompt += $"{host}";
+
+            if (Context.Items.TryGetValue("directory", out var directory))
+                prompt += $":{directory}";
+
+            prompt += "> ";
+            await Clients.Caller.Ready(prompt);
         }
     }
 }
