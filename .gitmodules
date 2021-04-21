@@ -1,0 +1,3 @@
+[submodule "XTerm"]
+	path = XTerm
+	url = git@github.com:Wuschli/XTerm.git

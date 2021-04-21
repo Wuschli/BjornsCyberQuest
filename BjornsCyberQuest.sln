@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BjornsCyberQuest.Server", "BjornsCyberQuest\Server\BjornsCyberQuest.Server.csproj", "{97DBCF00-06A8-4ABB-B2BA-84A7A80E406A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BjornsCyberQuest.Server", "BjornsCyberQuest\Server\BjornsCyberQuest.Server.csproj", "{97DBCF00-06A8-4ABB-B2BA-84A7A80E406A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BjornsCyberQuest.Client", "BjornsCyberQuest\Client\BjornsCyberQuest.Client.csproj", "{5732A366-9618-4C02-9A49-8892D57F1565}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BjornsCyberQuest.Client", "BjornsCyberQuest\Client\BjornsCyberQuest.Client.csproj", "{5732A366-9618-4C02-9A49-8892D57F1565}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BjornsCyberQuest.Shared", "BjornsCyberQuest\Shared\BjornsCyberQuest.Shared.csproj", "{B47CB162-2144-44B9-82D8-FFA9846D5320}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BjornsCyberQuest.Shared", "BjornsCyberQuest\Shared\BjornsCyberQuest.Shared.csproj", "{B47CB162-2144-44B9-82D8-FFA9846D5320}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{CD325BD8-B3D6-4741-B317-683DDFF4A535}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Extensions.XTerm", "XTerm\src\Blazor.Extensions.XTerm\Blazor.Extensions.XTerm.csproj", "{85222644-54FB-4C4B-9B26-6566D8FFE5B0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Extensions.XTerm.JS", "XTerm\src\Blazor.Extensions.XTerm.JS\Blazor.Extensions.XTerm.JS.csproj", "{259E94AB-9A07-4D56-B1D8-FA3F86FD9ADC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{CD325BD8-B3D6-4741-B317-683DDFF4A535}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD325BD8-B3D6-4741-B317-683DDFF4A535}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD325BD8-B3D6-4741-B317-683DDFF4A535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85222644-54FB-4C4B-9B26-6566D8FFE5B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85222644-54FB-4C4B-9B26-6566D8FFE5B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85222644-54FB-4C4B-9B26-6566D8FFE5B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85222644-54FB-4C4B-9B26-6566D8FFE5B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{259E94AB-9A07-4D56-B1D8-FA3F86FD9ADC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{259E94AB-9A07-4D56-B1D8-FA3F86FD9ADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{259E94AB-9A07-4D56-B1D8-FA3F86FD9ADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{259E94AB-9A07-4D56-B1D8-FA3F86FD9ADC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

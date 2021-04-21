@@ -1,15 +1,17 @@
 ﻿@page "/"
 @using Blazor.Extensions.XTerm
 
-<XTerm TerminalId="12345" Options="_options" OnKey="@(e => OnKeyPress(e))" OnLineFeed="@OnLineFeed" @ref="_terminal" HelloMessage="----- Hello, Blazor Terminal!!! -----"/>
+<XTerm TerminalId="default" Options="_options" OnKey="@OnKeyPress" OnLineFeed="@OnLineFeed" @ref="_terminal"/>
 
 @code{
     private XTerm _terminal;
 
-    private TerminalOptions _options = new TerminalOptions
+    private readonly TerminalOptions _options = new TerminalOptions
     {
         CursorBlink = true,
-        CursorStyle = CursorStyle.underline
+        CursorStyle = CursorStyle.underline,
+        RendererType = RendererType.dom,
+        FontFamily = "Consolas",
     };
 
     private Task OnKeyPress(KeyboardEventArgs keyPress)
@@ -19,16 +21,16 @@
 
         if (keyPress.Key == "Enter")
         {
-            return this._terminal.WriteLine();
+            return _terminal.WriteLine();
         }
-        else if (keyPress.Key == "Backspace")
+        if (keyPress.Key == "Backspace")
         {
-            return this._terminal.Write("\b \b");
+            return _terminal.Write("\b \b");
         }
 
         if (printable)
         {
-            return this._terminal.Write(keyPress.Key);
+            return _terminal.Write(keyPress.Key);
         }
         return Task.CompletedTask;
     }
@@ -36,12 +38,12 @@
     private Task OnLineFeed()
     {
         Console.WriteLine("---");
-        return this._terminal.ScrollLines();
+        return _terminal.ScrollLines();
     }
 
     private async Task Click(MouseEventArgs args)
     {
-        await this._terminal.WriteLine($"[{DateTime.UtcNow}] Hey you!");
+        await _terminal.WriteLine($"[{DateTime.UtcNow}] Hey you!");
     }
 
 }
