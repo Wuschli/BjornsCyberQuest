@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BjornsCyberQuest.Shared;
 using Blazor.Extensions.XTerm;
@@ -36,6 +34,7 @@ namespace BjornsCyberQuest.Client.Pages
         {
             _hubConnection = new HubConnectionBuilder()
                 .WithUrl(NavigationManager.ToAbsoluteUri("/terminalhub"))
+                .WithAutomaticReconnect()
                 .Build();
 
             _hubConnection.On<string>(nameof(ITerminalHub.ReceiveOutput), async output => { await _terminal.Write(output); });
