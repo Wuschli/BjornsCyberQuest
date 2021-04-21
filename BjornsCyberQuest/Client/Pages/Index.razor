@@ -1,49 +1,6 @@
 ﻿@page "/"
 @using Blazor.Extensions.XTerm
+@inject NavigationManager NavigationManager
+@implements IAsyncDisposable
 
 <XTerm TerminalId="default" Options="_options" OnKey="@OnKeyPress" OnLineFeed="@OnLineFeed" @ref="_terminal"/>
-
-@code{
-    private XTerm _terminal;
-
-    private readonly TerminalOptions _options = new TerminalOptions
-    {
-        CursorBlink = true,
-        CursorStyle = CursorStyle.underline,
-        RendererType = RendererType.dom,
-        FontFamily = "Consolas",
-    };
-
-    private Task OnKeyPress(KeyboardEventArgs keyPress)
-    {
-        Console.WriteLine(keyPress.Key);
-        var printable = !keyPress.AltKey && !keyPress.CtrlKey && !keyPress.MetaKey;
-
-        if (keyPress.Key == "Enter")
-        {
-            return _terminal.WriteLine();
-        }
-        if (keyPress.Key == "Backspace")
-        {
-            return _terminal.Write("\b \b");
-        }
-
-        if (printable)
-        {
-            return _terminal.Write(keyPress.Key);
-        }
-        return Task.CompletedTask;
-    }
-
-    private Task OnLineFeed()
-    {
-        Console.WriteLine("---");
-        return _terminal.ScrollLines();
-    }
-
-    private async Task Click(MouseEventArgs args)
-    {
-        await _terminal.WriteLine($"[{DateTime.UtcNow}] Hey you!");
-    }
-
-}
