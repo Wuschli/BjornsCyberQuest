@@ -4,6 +4,6 @@ namespace BjornsCyberQuest.Shared
 {
     public interface ITerminal
     {
-        Task SendInput(string input);
+        Task ClientToServer(string input);
     }
 }

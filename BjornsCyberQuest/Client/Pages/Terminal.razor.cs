@@ -37,7 +37,7 @@ namespace BjornsCyberQuest.Client.Pages
                 .WithAutomaticReconnect()
                 .Build();
 
-            _hubConnection.On<string>(nameof(ITerminalHub.ReceiveOutput), async output => { await _terminal.Write(output); });
+            _hubConnection.On<string>(nameof(ITerminalHub.ServerToClient), async output => { await _terminal.Write(output); });
             _hubConnection.On<string>(nameof(ITerminalHub.Ready), async prompt =>
             {
                 _ready = true;
@@ -126,7 +126,7 @@ namespace BjornsCyberQuest.Client.Pages
         private async Task Enter()
         {
             _ready = false;
-            await _hubConnection.SendAsync(nameof(ITerminal.SendInput), _input);
+            await _hubConnection.SendAsync(nameof(ITerminal.ClientToServer), _input);
             _history.Add(_input);
             _historyIndex = _history.Count;
             _cursorPosition = 0;
