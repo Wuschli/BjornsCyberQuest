@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BjornsCyberQuest.Shared;
 using Blazor.Extensions.XTerm;
@@ -138,9 +139,12 @@ namespace BjornsCyberQuest.Client.Pages
 
         private async Task Enter()
         {
+            if (string.IsNullOrWhiteSpace(_input))
+                return;
             _ready = false;
             await _hubConnection.SendAsync(nameof(ITerminal.ClientToServer), _input);
-            _history.Add(_input);
+            if (_input != _history.LastOrDefault())
+                _history.Add(_input);
             _historyIndex = _history.Count;
             _cursorPosition = 0;
             _input = string.Empty;
