@@ -19,6 +19,8 @@ namespace BjornsCyberQuest.Server.Hubs
 {
     public class TerminalHub : Hub<ITerminalHub>, ITerminal, ICommandHost
     {
+        private const string HostKey = "host";
+        private const string UserKey = "user";
         private readonly ILogger<TerminalHub> _logger;
         private readonly IServiceProvider _serviceProvider;
         private readonly Dictionary<string, ParsedCommand> _commands = new();
@@ -44,14 +46,17 @@ namespace BjornsCyberQuest.Server.Hubs
             }
         }
 
-        private string CurrentHost
+        public IEnumerable<string> KnownHosts => _hosts.Keys;
+
+        public string CurrentHost
         {
             get
             {
-                if (Context.Items.TryGetValue("host", out var host))
+                if (Context.Items.TryGetValue(HostKey, out var host))
                     return host?.ToString() ?? string.Empty;
                 return string.Empty;
             }
+            set => Context.Items[HostKey] = value;
         }
 
         public TerminalHub(ILogger<TerminalHub> logger, IServiceProvider serviceProvider)
@@ -64,10 +69,8 @@ namespace BjornsCyberQuest.Server.Hubs
 
         public override async Task OnConnectedAsync()
         {
-            if (!Context.Items.TryGetValue("host", out var host))
-                Context.Items["host"] = "localhost";
-            if (!Context.Items.TryGetValue("directory", out var directory))
-                Context.Items["directory"] = "~";
+            if (string.IsNullOrWhiteSpace(CurrentHost))
+                CurrentHost = "localhost";
             await Ready();
         }
 
@@ -140,17 +143,21 @@ namespace BjornsCyberQuest.Server.Hubs
             await Clients.Caller.OpenYouTube(youTubeLink);
         }
 
+        public Host? GetHost(string hostname)
+        {
+            if (!_hosts.TryGetValue(hostname, out var host))
+                return null;
+            return host;
+        }
+
         private async Task Ready()
         {
             var prompt = "";
-            if (Context.Items.TryGetValue("user", out var user))
+            if (Context.Items.TryGetValue(UserKey, out var user))
                 prompt += $"{user}@";
 
-            if (Context.Items.TryGetValue("host", out var host))
+            if (Context.Items.TryGetValue(HostKey, out var host))
                 prompt += $"{host}";
-
-            if (Context.Items.TryGetValue("directory", out var directory))
-                prompt += $":{directory}";
 
             prompt += "> ";
             await Clients.Caller.Ready(prompt);

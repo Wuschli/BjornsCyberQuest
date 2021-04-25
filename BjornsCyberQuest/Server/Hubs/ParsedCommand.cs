@@ -21,7 +21,7 @@ namespace BjornsCyberQuest.Server.Hubs
             ParameterType = parameterType;
         }
 
-        public async Task Execute(ICommandHost host, string json)
+        public async Task Execute(ICommandHost host, string? json)
         {
             object? parameter;
 
