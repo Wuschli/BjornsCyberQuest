@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using BjornsCyberQuest.Server.Commands;
+using BjornsCyberQuest.Server.Data;
 using BjornsCyberQuest.Shared;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,13 +24,23 @@ namespace BjornsCyberQuest.Server.Hubs
         private readonly Dictionary<string, ParsedCommand> _commands = new();
         private readonly Dictionary<string, Host> _hosts = new();
 
-        public IEnumerable<File> Files
+        public IEnumerable<Data.File> Files
         {
             get
             {
-                if (_hosts.TryGetValue(CurrentHost, out var host))
+                if (_hosts.TryGetValue(CurrentHost, out var host) && host.Files != null)
                     return host.Files;
-                return Enumerable.Empty<File>();
+                return Enumerable.Empty<Data.File>();
+            }
+        }
+
+        public IEnumerable<Mail> Mails
+        {
+            get
+            {
+                if (_hosts.TryGetValue(CurrentHost, out var host) && host.Mails != null)
+                    return host.Mails;
+                return Enumerable.Empty<Mail>();
             }
         }
 
@@ -117,9 +128,12 @@ namespace BjornsCyberQuest.Server.Hubs
             await Clients.Caller.ServerToClient(s);
         }
 
-        public async Task WriteLine(string s)
+        public async Task WriteLine(string? s = null)
         {
-            await Clients.Caller.ServerToClient(s + "\r\n");
+            if (s != null)
+                await Clients.Caller.ServerToClient(s + "\r\n");
+            else
+                await Clients.Caller.ServerToClient("\r\n");
         }
 
         public async Task OpenYouTube(string youTubeLink)
@@ -224,29 +238,5 @@ namespace BjornsCyberQuest.Server.Hubs
                 }
             }
         }
-    }
-
-    public class Host
-    {
-        public List<User> Users { get; set; }
-        public List<File> Files { get; set; }
-        public List<Email> Mails { get; set; }
-    }
-
-    public class User
-    {
-        public string UserName { get; set; }
-        public string? Password { get; set; }
-    }
-
-    public class Email
-    {
-    }
-
-    public class File
-    {
-        public string Name { get; set; }
-        public string? Text { get; set; }
-        public string? YouTube { get; set; }
     }
 }

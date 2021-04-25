@@ -3,3 +3,9 @@
     text: World!
   - name: test.vid
     youTube: https://www.youtube.com/embed/aWZyj1bM08s
+mails:
+  - timestamp: 2077-04-25T07:11:42
+    from: '"Chief Executive Officer" <CEO@foobar.com>'
+    to: '"Mrs. Johnson" <johnson@foobar.com>'
+    subject: 'Quartalszahlen Q1 2077'
+    text: 'Alles tutti!'
