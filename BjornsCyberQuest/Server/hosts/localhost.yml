@@ -1,3 +1,5 @@
 ﻿files:
   - name: hello.txt
     text: World!
+  - name: test.vid
+    youTube: https://www.youtube.com/embed/aWZyj1bM08s

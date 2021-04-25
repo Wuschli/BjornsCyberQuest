@@ -6,6 +6,8 @@ namespace BjornsCyberQuest.Server.Hubs
     public interface ICommandHost
     {
         IEnumerable<File> Files { get; }
-        Task Send(string s);
+        Task Write(string s);
+        Task WriteLine(string s);
+        Task OpenYouTube(string youTubeLink);
     }
 }

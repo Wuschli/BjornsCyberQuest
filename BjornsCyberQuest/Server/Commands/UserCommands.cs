@@ -12,11 +12,11 @@ namespace BjornsCyberQuest.Server.Commands
         {
             if (parameters?.Name == null)
             {
-                await host.Send($"Usage: user.create {"{ name: \"userName\"}".Pastel(Color.Aquamarine)}...\r\n");
+                await host.WriteLine($"Usage: user.create {"{ name: \"userName\"}".Pastel(Color.Aquamarine)}...");
             }
             else
             {
-                await host.Send($"Creating User {parameters.Name?.Pastel(Color.Aquamarine)}...\r\n");
+                await host.WriteLine($"Creating User {parameters.Name?.Pastel(Color.Aquamarine)}...");
             }
         }
     }

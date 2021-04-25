@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BjornsCyberQuest.Shared;
 using Blazor.Extensions.XTerm;
@@ -26,6 +27,7 @@ namespace BjornsCyberQuest.Client.Pages
 
         private HubConnection _hubConnection;
         private string _prompt;
+        private string? _youTubeLink;
 
         private bool IsStartOfLine => _cursorPosition == 0;
         private bool IsEndOfLine => _cursorPosition == _input.Length;
@@ -38,6 +40,12 @@ namespace BjornsCyberQuest.Client.Pages
                 .Build();
 
             _hubConnection.On<string>(nameof(ITerminalHub.ServerToClient), async output => { await _terminal.Write(output); });
+            _hubConnection.On<string>(nameof(ITerminalHub.OpenYouTube), youTubeLink =>
+            {
+                _youTubeLink = youTubeLink;
+                Console.WriteLine(youTubeLink);
+                StateHasChanged();
+            });
             _hubConnection.On<string>(nameof(ITerminalHub.Ready), async prompt =>
             {
                 _ready = true;
@@ -57,6 +65,11 @@ namespace BjornsCyberQuest.Client.Pages
             {
                 case "Enter":
                     await Enter();
+                    break;
+
+                case "Escape":
+                    _youTubeLink = null;
+                    StateHasChanged();
                     break;
 
                 case "Backspace":
@@ -225,6 +238,12 @@ namespace BjornsCyberQuest.Client.Pages
         public async ValueTask DisposeAsync()
         {
             await _hubConnection.DisposeAsync();
+        }
+
+        private void OnClickCloseYouTube()
+        {
+            _youTubeLink = null;
+            StateHasChanged();
         }
     }
 }

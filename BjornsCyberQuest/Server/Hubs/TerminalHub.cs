@@ -112,9 +112,19 @@ namespace BjornsCyberQuest.Server.Hubs
         }
 
 
-        public async Task Send(string s)
+        public async Task Write(string s)
         {
             await Clients.Caller.ServerToClient(s);
+        }
+
+        public async Task WriteLine(string s)
+        {
+            await Clients.Caller.ServerToClient(s + "\r\n");
+        }
+
+        public async Task OpenYouTube(string youTubeLink)
+        {
+            await Clients.Caller.OpenYouTube(youTubeLink);
         }
 
         private async Task Ready()
@@ -237,6 +247,6 @@ namespace BjornsCyberQuest.Server.Hubs
     {
         public string Name { get; set; }
         public string? Text { get; set; }
-        public string YouTube { get; set; }
+        public string? YouTube { get; set; }
     }
 }

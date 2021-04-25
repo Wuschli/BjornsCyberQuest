@@ -4,3 +4,14 @@
 @implements IAsyncDisposable
 
 <XTerm TerminalId="default" Options="_options" OnKey="@OnKeyPress" @ref="_terminal"/>
+
+@if (!string.IsNullOrWhiteSpace(_youTubeLink))
+{
+    <div class="lightbox">
+        <div>
+            <div class="close" @onclick="OnClickCloseYouTube">close</div>
+            <iframe width="1422" height="800" src="@_youTubeLink" title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+}

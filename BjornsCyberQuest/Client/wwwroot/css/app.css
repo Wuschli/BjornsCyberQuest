@@ -28,3 +28,30 @@
     right: 0.75rem;
     top: 0.5rem;
 }
+
+/** LIGHTBOX MARKUP **/
+
+.lightbox {
+    /* Overlay entire screen */
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* A bit of padding around image */
+    padding: 1em;
+    /* Translucent background */
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox .close {
+    color: white;
+    display: block;
+    font-family: "Consolas";
+    cursor: pointer;
+    text-align: end;
+}

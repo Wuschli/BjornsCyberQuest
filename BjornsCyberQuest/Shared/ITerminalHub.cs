@@ -6,5 +6,6 @@ namespace BjornsCyberQuest.Shared
     {
         Task ServerToClient(string output);
         Task Ready(string prompt);
+        Task OpenYouTube(string youTubeLink);
     }
 }
