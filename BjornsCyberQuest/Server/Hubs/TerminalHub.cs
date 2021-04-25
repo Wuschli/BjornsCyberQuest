@@ -73,7 +73,6 @@ namespace BjornsCyberQuest.Server.Hubs
 
         public async Task ClientToServer(string input)
         {
-            //await Clients.Caller.ServerToClient(input.Pastel(Color.Aqua) + "\r\n");
             var tokens = input.Split(' ', 2, StringSplitOptions.TrimEntries);
             if (tokens.Length == 0)
             {
@@ -221,12 +220,8 @@ namespace BjornsCyberQuest.Server.Hubs
                     }
 
                     var instance = ActivatorUtilities.CreateInstance(_serviceProvider, instanceType);
-                    var parsedCommand = new ParsedCommand
-                    {
-                        Method = commandMethod,
-                        Instance = instance,
-                        ParameterType = parameterType
-                    };
+                    var parsedCommand = new ParsedCommand(commandMethod, instance, parameters.Length, parameterType);
+
                     if (_commands.ContainsKey(commandName))
                     {
                         _logger.LogWarning($"Command {commandName} cannot be registered twice");
