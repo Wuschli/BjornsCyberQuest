@@ -9,3 +9,6 @@ mails:
     to: '"Mrs. Johnson" <johnson@foobar.com>'
     subject: 'Quartalszahlen Q1 2077'
     text: 'Alles tutti!'
+users:
+  - userName: patriot
+    password: '1234'

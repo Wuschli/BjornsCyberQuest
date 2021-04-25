@@ -59,6 +59,17 @@ namespace BjornsCyberQuest.Server.Hubs
             set => Context.Items[HostKey] = value;
         }
 
+        public string? CurrentUser
+        {
+            get
+            {
+                if (Context.Items.TryGetValue(UserKey, out var user))
+                    return user?.ToString() ?? string.Empty;
+                return string.Empty;
+            }
+            set => Context.Items[UserKey] = value;
+        }
+
         public TerminalHub(ILogger<TerminalHub> logger, IServiceProvider serviceProvider)
         {
             _logger = logger;
@@ -153,8 +164,8 @@ namespace BjornsCyberQuest.Server.Hubs
         private async Task Ready()
         {
             var prompt = "";
-            if (Context.Items.TryGetValue(UserKey, out var user))
-                prompt += $"{user}@";
+            if (!string.IsNullOrWhiteSpace(CurrentUser))
+                prompt += $"{CurrentUser}@";
 
             if (Context.Items.TryGetValue(HostKey, out var host))
                 prompt += $"{host}";

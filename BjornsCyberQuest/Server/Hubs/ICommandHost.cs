@@ -10,7 +10,7 @@ namespace BjornsCyberQuest.Server.Hubs
         IEnumerable<Mail> Mails { get; }
         IEnumerable<string> KnownHosts { get; }
         string CurrentHost { get; set; }
-
+        string? CurrentUser { get; set; }
         Task Write(string s);
         Task WriteLine(string? s = null);
         Task OpenYouTube(string youTubeLink);
