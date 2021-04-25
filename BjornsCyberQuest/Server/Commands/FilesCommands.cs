@@ -13,7 +13,10 @@ namespace BjornsCyberQuest.Server.Commands
         {
             foreach (var file in host.Files)
             {
-                await host.WriteLine($"{file.Name}");
+                if (file.Password == null)
+                    await host.WriteLine($"  {file.Name}");
+                else
+                    await host.WriteLine($"{"E".Pastel(Color.Coral)} {file.Name}");
                 await Task.Delay(200);
             }
         }
@@ -31,6 +34,19 @@ namespace BjornsCyberQuest.Server.Commands
             if (file == null)
             {
                 await host.WriteLine($"File {parameters.File} not found!".Pastel(Color.Red));
+                return;
+            }
+
+            if (file.Password != null && parameters.Password == null)
+            {
+                await host.WriteLine("Missing parameter \"password\"".Pastel(Color.Red));
+                await host.WriteLine($"Usage: files.open {"{ file: \"fileName\", password:\"password\"}".Pastel(Color.Aquamarine)}...");
+                return;
+            }
+
+            if (file.Password != null && file.Password != parameters.Password)
+            {
+                await host.WriteLine("Wrong password!".Pastel(Color.Red));
                 return;
             }
 
@@ -53,5 +69,6 @@ namespace BjornsCyberQuest.Server.Commands
     public class FilesOpenParameters
     {
         public string? File { get; set; }
+        public string? Password { get; set; }
     }
 }
