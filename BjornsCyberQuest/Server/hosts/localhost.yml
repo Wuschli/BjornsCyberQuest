@@ -1,0 +1,3 @@
+﻿files:
+  - name: hello.txt
+    text: World!

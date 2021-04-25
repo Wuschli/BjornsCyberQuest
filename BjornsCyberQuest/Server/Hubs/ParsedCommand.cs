@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
@@ -11,7 +11,7 @@ namespace BjornsCyberQuest.Server.Hubs
         private readonly JsonSerializerSettings _settings;
         public MethodInfo Method { get; init; }
         public object Instance { get; init; }
-        public Type ParameterType { get; init; }
+        public Type? ParameterType { get; init; }
 
         public ParsedCommand()
         {
@@ -24,13 +24,15 @@ namespace BjornsCyberQuest.Server.Hubs
         {
             object? parameter;
 
-            if (string.IsNullOrWhiteSpace(json))
+            if (string.IsNullOrWhiteSpace(json) || ParameterType == null)
                 parameter = null;
             else
-                parameter = JsonConvert.DeserializeObject(json, ParameterType/*, _settings*/);
+                parameter = JsonConvert.DeserializeObject(json, ParameterType /*, _settings*/);
 
-            var parameters = new[] {host, parameter};
-            if (Method.Invoke(Instance, parameters) is Task task)
+            var parameters = new List<object?> {host};
+            if (parameter != null)
+                parameters.Add(parameter);
+            if (Method.Invoke(Instance, parameters.ToArray()) is Task task)
                 await task;
         }
     }

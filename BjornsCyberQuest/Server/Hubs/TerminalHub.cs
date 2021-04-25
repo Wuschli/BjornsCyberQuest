@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using BjornsCyberQuest.Server.Commands;
@@ -8,7 +9,10 @@ using BjornsCyberQuest.Shared;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Pastel;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 
 namespace BjornsCyberQuest.Server.Hubs
 {
@@ -17,11 +21,33 @@ namespace BjornsCyberQuest.Server.Hubs
         private readonly ILogger<TerminalHub> _logger;
         private readonly IServiceProvider _serviceProvider;
         private readonly Dictionary<string, ParsedCommand> _commands = new();
+        private readonly Dictionary<string, Host> _hosts = new();
+
+        public IEnumerable<File> Files
+        {
+            get
+            {
+                if (_hosts.TryGetValue(CurrentHost, out var host))
+                    return host.Files;
+                return Enumerable.Empty<File>();
+            }
+        }
+
+        private string CurrentHost
+        {
+            get
+            {
+                if (Context.Items.TryGetValue("host", out var host))
+                    return host?.ToString() ?? string.Empty;
+                return string.Empty;
+            }
+        }
 
         public TerminalHub(ILogger<TerminalHub> logger, IServiceProvider serviceProvider)
         {
             _logger = logger;
             _serviceProvider = serviceProvider;
+            LoadHosts();
             CollectCommands();
         }
 
@@ -63,6 +89,18 @@ namespace BjornsCyberQuest.Server.Hubs
                     await command.Execute(this, null);
                 }
             }
+            catch (JsonSerializationException e)
+            {
+                _logger.LogError(e, $"Error while executing command {input}");
+
+                await Clients.Caller.ServerToClient($"{e.Message}\r\n".Pastel(Color.Red));
+            }
+            catch (JsonReaderException e)
+            {
+                _logger.LogError(e, $"Error while executing command {input}");
+
+                await Clients.Caller.ServerToClient($"{e.Message}\r\n".Pastel(Color.Red));
+            }
             catch (Exception e)
             {
                 _logger.LogError(e, $"Error while executing command {input}");
@@ -72,6 +110,7 @@ namespace BjornsCyberQuest.Server.Hubs
 
             await Ready();
         }
+
 
         public async Task Send(string s)
         {
@@ -92,6 +131,24 @@ namespace BjornsCyberQuest.Server.Hubs
 
             prompt += "> ";
             await Clients.Caller.Ready(prompt);
+        }
+
+        private void LoadHosts()
+        {
+            var ymlFiles = Directory.GetFiles("./hosts", "*.yml", SearchOption.AllDirectories);
+            var yamlFiles = Directory.GetFiles("./hosts", "*.yaml", SearchOption.AllDirectories);
+
+            var deserializer = new DeserializerBuilder()
+                .WithNamingConvention(CamelCaseNamingConvention.Instance)
+                .Build();
+
+            foreach (var hostFile in yamlFiles.Concat(ymlFiles))
+            {
+                var yaml = System.IO.File.ReadAllText(hostFile);
+                var hostname = Path.GetFileNameWithoutExtension(hostFile);
+                var host = deserializer.Deserialize<Host>(yaml);
+                _hosts[hostname] = host;
+            }
         }
 
         private void CollectCommands()
@@ -116,7 +173,7 @@ namespace BjornsCyberQuest.Server.Hubs
                     }
 
                     var parameters = commandMethod.GetParameters();
-                    if (parameters.Length != 2)
+                    if (parameters.Length != 1 && parameters.Length != 2)
                     {
                         _logger.LogWarning($"Parameters do not match for command {commandName}");
                         continue;
@@ -128,7 +185,9 @@ namespace BjornsCyberQuest.Server.Hubs
                         continue;
                     }
 
-                    var parameterType = parameters[1].ParameterType;
+                    Type? parameterType = null;
+                    if (parameters.Length == 2)
+                        parameterType = parameters[1].ParameterType;
 
                     var instanceType = commandMethod.DeclaringType;
                     if (instanceType == null)
@@ -155,5 +214,29 @@ namespace BjornsCyberQuest.Server.Hubs
                 }
             }
         }
+    }
+
+    public class Host
+    {
+        public List<User> Users { get; set; }
+        public List<File> Files { get; set; }
+        public List<Email> Mails { get; set; }
+    }
+
+    public class User
+    {
+        public string UserName { get; set; }
+        public string? Password { get; set; }
+    }
+
+    public class Email
+    {
+    }
+
+    public class File
+    {
+        public string Name { get; set; }
+        public string? Text { get; set; }
+        public string YouTube { get; set; }
     }
 }
