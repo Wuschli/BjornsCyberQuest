@@ -5,7 +5,8 @@
     youTube: https://www.youtube.com/embed/aWZyj1bM08s
   - name: encrypted.txt
     text: 'Congratulations! You successfully unencrypted this file!'
-    password: 'password1234'
+    passwords:
+      - 'password1234'
 mails:
   - timestamp: 2077-04-25T07:11:42
     from: '"Chief Executive Officer" <CEO@foobar.com>'

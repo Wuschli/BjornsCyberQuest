@@ -11,4 +11,5 @@ mails:
     text: 'Alles tutti!'
 users:
   - userName: patriot
-    password: '1234'
+    passwords:
+      - '1234'

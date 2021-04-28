@@ -45,7 +45,7 @@ namespace BjornsCyberQuest.Server.Commands
                     return;
                 }
 
-                if (!string.IsNullOrWhiteSpace(user.Password))
+                if (user.Passwords != null && user.Passwords.Any())
                 {
                     if (string.IsNullOrWhiteSpace(parameters.Password))
                     {
@@ -55,7 +55,7 @@ namespace BjornsCyberQuest.Server.Commands
                         return;
                     }
 
-                    if (user.Password != parameters.Password)
+                    if (!user.Passwords.Contains(parameters.Password))
                     {
                         await host.WriteLine();
                         await host.WriteLine("Invalid password".Pastel(Color.Red));

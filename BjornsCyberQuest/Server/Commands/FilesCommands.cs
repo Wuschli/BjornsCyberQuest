@@ -13,7 +13,7 @@ namespace BjornsCyberQuest.Server.Commands
         {
             foreach (var file in host.Files)
             {
-                if (file.Password == null)
+                if (file.Passwords == null || !file.Passwords.Any())
                     await host.WriteLine($"  {file.Name}");
                 else
                     await host.WriteLine($"{"E".Pastel(Color.Coral)} {file.Name}");
@@ -37,17 +37,20 @@ namespace BjornsCyberQuest.Server.Commands
                 return;
             }
 
-            if (file.Password != null && parameters.Password == null)
+            if (file.Passwords != null && file.Passwords.Any())
             {
-                await host.WriteLine("Missing parameter \"password\"".Pastel(Color.Red));
-                await host.WriteLine($"Usage: files.open {"{ file: \"fileName\", password:\"password\"}".Pastel(Color.Aquamarine)}...");
-                return;
-            }
+                if (string.IsNullOrWhiteSpace(parameters.Password))
+                {
+                    await host.WriteLine("Missing parameter \"password\"".Pastel(Color.Red));
+                    await host.WriteLine($"Usage: files.open {"{ file: \"fileName\", password:\"password\"}".Pastel(Color.Aquamarine)}...");
+                    return;
+                }
 
-            if (file.Password != null && file.Password != parameters.Password)
-            {
-                await host.WriteLine("Wrong password!".Pastel(Color.Red));
-                return;
+                if (!file.Passwords.Contains(parameters.Password))
+                {
+                    await host.WriteLine("Invalid password!".Pastel(Color.Red));
+                    return;
+                }
             }
 
             if (!string.IsNullOrWhiteSpace(file.Text))
