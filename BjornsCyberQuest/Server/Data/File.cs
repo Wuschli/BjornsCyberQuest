@@ -7,6 +7,7 @@ namespace BjornsCyberQuest.Server.Data
         public string Name { get; set; }
         public string? Text { get; set; }
         public string? YouTube { get; set; }
+        public string? Sequence { get; set; }
         public List<string>? Passwords { get; set; }
     }
 }

@@ -22,10 +22,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="hosts\otherhost.yml">
+    <None Update="config\config.yml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="hosts\localhost.yml">
+    <None Update="config\hosts\otherhost.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="config\hosts\localhost.yml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

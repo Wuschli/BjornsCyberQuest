@@ -1,8 +1,16 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using BjornsCyberQuest.Server.Data;
 using BjornsCyberQuest.Server.Hubs;
 using Pastel;
+using YamlDotNet.Core;
+using YamlDotNet.Core.Events;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
+using File = System.IO.File;
 
 namespace BjornsCyberQuest.Server.Commands
 {
@@ -65,7 +73,59 @@ namespace BjornsCyberQuest.Server.Commands
                 return;
             }
 
+            if (!string.IsNullOrWhiteSpace(file.Sequence) && File.Exists($"./config/{file.Sequence}"))
+            {
+                await ParseSequence(host, file);
+                return;
+            }
+
             await host.WriteLine($"File {parameters.File} is empty.".Pastel(Color.Yellow));
+        }
+
+        private async Task ParseSequence(ICommandHost host, Data.File file)
+        {
+            var reader = new StreamReader($"./config/{file.Sequence}");
+            var deserializer = new DeserializerBuilder()
+                .WithNamingConvention(CamelCaseNamingConvention.Instance)
+                .Build();
+            var parser = new Parser(reader);
+            parser.Consume<StreamStart>();
+
+            string? speaker = null;
+            string speakerColor = "68C355";
+            bool isNewLine = true;
+
+            while (parser.Accept<DocumentStart>(out _))
+            {
+                var step = deserializer.Deserialize<SequenceStep>(parser);
+
+                if (step.Speaker != null)
+                    speaker = step.Speaker;
+                if (step.SpeakerColor != null)
+                    speakerColor = step.SpeakerColor;
+
+                if (!string.IsNullOrWhiteSpace(speaker) && isNewLine)
+                    await host.Write($"{speaker}: ".Pastel(speakerColor));
+
+                foreach (var c in step.Text)
+                {
+                    await host.Write(c.ToString().Pastel(step.Color));
+                    await Task.Delay(1000 / step.Speed);
+                }
+
+                //await host.Write(step.Text.Pastel(step.Color));
+                if (step.LineBreak)
+                {
+                    isNewLine = true;
+                    await host.WriteLine();
+                }
+                else
+                {
+                    isNewLine = false;
+                }
+
+                await Task.Delay(step.Delay);
+            }
         }
     }
 

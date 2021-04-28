@@ -9,6 +9,8 @@ files:
     text: 'Congratulations! You successfully unencrypted this file!'
     passwords:
       - 'password1234'
+  - name: jojo.ai
+    sequence: 'data/jojo.yml'
 mails:
   - timestamp: 2077-04-25T07:11:42
     from: '"Chief Executive Officer" <CEO@foobar.com>'

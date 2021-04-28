@@ -1,0 +1,15 @@
+﻿---
+speaker: "JoJo"
+text: "Hello world!"
+---
+text: "Is this reality?"
+color: "1B96EC"
+---
+text: "Am I dead?"
+delay: 3000
+---
+text: "No"
+lineBreak: false
+speakerColor: "E93519"
+---
+text: ", I can feel, that I am not dead"

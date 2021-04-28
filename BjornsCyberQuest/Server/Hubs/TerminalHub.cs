@@ -182,8 +182,8 @@ namespace BjornsCyberQuest.Server.Hubs
 
         private void LoadHosts()
         {
-            var ymlFiles = Directory.GetFiles("./hosts", "*.yml", SearchOption.AllDirectories);
-            var yamlFiles = Directory.GetFiles("./hosts", "*.yaml", SearchOption.AllDirectories);
+            var ymlFiles = Directory.GetFiles("./config/hosts", "*.yml", SearchOption.AllDirectories);
+            var yamlFiles = Directory.GetFiles("./config/hosts", "*.yaml", SearchOption.AllDirectories);
 
             var deserializer = new DeserializerBuilder()
                 .WithNamingConvention(CamelCaseNamingConvention.Instance)
@@ -200,9 +200,9 @@ namespace BjornsCyberQuest.Server.Hubs
 
         private void LoadConfig()
         {
-            var configFile = "./config.yml";
+            var configFile = "./config/config.yml";
             if (!System.IO.File.Exists(configFile))
-                configFile = "./config.yaml";
+                configFile = "./config/config.yaml";
             if (!System.IO.File.Exists(configFile))
                 return;
             var yaml = System.IO.File.ReadAllText(configFile);
