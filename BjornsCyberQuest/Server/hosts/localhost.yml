@@ -1,4 +1,6 @@
-﻿files:
+﻿users:
+  - userName: 'rexi'
+files:
   - name: hello.txt
     text: World!
   - name: test.vid

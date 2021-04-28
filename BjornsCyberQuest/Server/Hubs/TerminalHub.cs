@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 using Pastel;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
+using File = BjornsCyberQuest.Server.Data.File;
 
 namespace BjornsCyberQuest.Server.Hubs
 {
@@ -25,6 +26,7 @@ namespace BjornsCyberQuest.Server.Hubs
         private readonly IServiceProvider _serviceProvider;
         private readonly Dictionary<string, ParsedCommand> _commands = new();
         private readonly Dictionary<string, Host> _hosts = new();
+        private Config? _config;
 
         public IEnumerable<Data.File> Files
         {
@@ -75,13 +77,17 @@ namespace BjornsCyberQuest.Server.Hubs
             _logger = logger;
             _serviceProvider = serviceProvider;
             LoadHosts();
+            LoadConfig();
             CollectCommands();
         }
 
         public override async Task OnConnectedAsync()
         {
             if (string.IsNullOrWhiteSpace(CurrentHost))
-                CurrentHost = "localhost";
+                CurrentHost = !string.IsNullOrWhiteSpace(_config?.DefaultHost) ? _config.DefaultHost : "localhost";
+            if (string.IsNullOrWhiteSpace(CurrentUser))
+                CurrentUser = !string.IsNullOrWhiteSpace(_config?.DefaultUser) ? _config.DefaultUser : string.Empty;
+
             await Ready();
         }
 
@@ -190,6 +196,22 @@ namespace BjornsCyberQuest.Server.Hubs
                 var host = deserializer.Deserialize<Host>(yaml);
                 _hosts[hostname] = host;
             }
+        }
+
+        private void LoadConfig()
+        {
+            var configFile = "./config.yml";
+            if (!System.IO.File.Exists(configFile))
+                configFile = "./config.yaml";
+            if (!System.IO.File.Exists(configFile))
+                return;
+            var yaml = System.IO.File.ReadAllText(configFile);
+
+            var deserializer = new DeserializerBuilder()
+                .WithNamingConvention(CamelCaseNamingConvention.Instance)
+                .Build();
+
+            _config = deserializer.Deserialize<Config>(yaml);
         }
 
         private void CollectCommands()
