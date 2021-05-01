@@ -210,9 +210,10 @@ namespace BjornsCyberQuest.Server.Hubs
             foreach (var hostFile in yamlFiles.Concat(ymlFiles))
             {
                 var yaml = System.IO.File.ReadAllText(hostFile);
-                var hostname = Path.GetFileNameWithoutExtension(hostFile);
+                var hostname = Path.GetFileNameWithoutExtension(hostFile).ToLower();
                 var host = deserializer.Deserialize<Host>(yaml);
                 _hosts[hostname] = host;
+                _logger.LogInformation($"Registered host {hostname}");
             }
         }
 
