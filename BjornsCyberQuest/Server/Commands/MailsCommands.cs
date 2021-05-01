@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BjornsCyberQuest.Server.Hubs;
 using Pastel;
@@ -38,11 +39,23 @@ namespace BjornsCyberQuest.Server.Commands
 
             var mail = mails[parameters.Id.Value];
             await host.WriteLine($"Date: {mail.Timestamp}".Pastel(Color.Gray));
+            await Task.Delay(100);
             await host.WriteLine($"From: {mail.From}".Pastel(Color.Gray));
+            await Task.Delay(100);
             await host.WriteLine($"To: {mail.To}".Pastel(Color.Gray));
+            await Task.Delay(100);
             await host.WriteLine($"Subject: {mail.Subject}".Pastel(Color.Coral));
+            await Task.Delay(100);
             await host.WriteLine();
-            await host.WriteLine(mail.Text);
+            await Task.Delay(100);
+
+            var lines = Regex.Split(mail.Text, "\r\n|\r|\n");
+            foreach (var line in lines)
+            {
+                await host.WriteLine(line.Trim());
+                await Task.Delay(100);
+            }
+
             await host.WriteLine();
         }
 

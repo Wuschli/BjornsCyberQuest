@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BjornsCyberQuest.Server.Commands;
 using BjornsCyberQuest.Server.Data;
@@ -87,6 +88,23 @@ namespace BjornsCyberQuest.Server.Hubs
                 CurrentHost = !string.IsNullOrWhiteSpace(_config?.DefaultHost) ? _config.DefaultHost : "localhost";
             if (string.IsNullOrWhiteSpace(CurrentUser))
                 CurrentUser = !string.IsNullOrWhiteSpace(_config?.DefaultUser) ? _config.DefaultUser : string.Empty;
+
+            await WriteLine();
+            await Task.Delay(100);
+            await WriteLine("connected...");
+            await Task.Delay(100);
+            await WriteLine();
+            await Task.Delay(100);
+
+            if (!string.IsNullOrWhiteSpace(_config?.StartupText))
+            {
+                var lines = Regex.Split(_config.StartupText, "\r\n|\r|\n");
+                foreach (var line in lines)
+                {
+                    await WriteLine(line.Trim());
+                    await Task.Delay(100);
+                }
+            }
 
             await Ready();
         }
@@ -176,7 +194,7 @@ namespace BjornsCyberQuest.Server.Hubs
             if (Context.Items.TryGetValue(HostKey, out var host))
                 prompt += $"{host}";
 
-            prompt += "> ";
+            prompt = prompt.Pastel(Color.Aqua) + "> ";
             await Clients.Caller.Ready(prompt);
         }
 

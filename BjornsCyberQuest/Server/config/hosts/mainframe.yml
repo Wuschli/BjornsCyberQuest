@@ -1,0 +1,42 @@
+users:
+  # stehen unter der Tastatur
+  - userName: "phoenix" 
+    passwords:
+      - "feltCAUGHTduck84"
+  - userName: "lily"
+    passwords:
+      - "forwardHEAVYcreate89"
+  - userName: "whisper"
+    passwords:
+      - "elementsTHEYdeep77"
+  - userName: "lambda"
+    passwords:
+      - "liftTRUSTfinger42"
+
+mails:
+  - timestamp: 2077-05-08T07:11:42
+    from: 'Tech Support <TechSupport@BPC-Systems.com>'
+    to: 'Alexis Patriot <patriot@BPC-Systems.com>'
+    subject: 'Zurücksetzen Ihres Passworts'
+    text: |-
+      Sehr geehrte Frau Patriot,
+
+      wir haben Ihr Passwort für ihr Nutzerkonto "patriot" auf folgenden Wert zurückgesetzt:
+      
+      favorJUSTtrust51
+
+      Bitte beachten Sie, dass Sie das von uns generierte Passwort schnellsmöglich ändern!
+
+      Mit freundlichen Grüßen,
+
+      BPC Systems Tech Support
+  - timestamp: 2077-05-08T07:11:42
+    from: 'Cheat <cheat@raptorface.com>'
+    to: 'Alexis Patriot <patriot@BPC-Systems.com>'
+    subject: 'Zurücksetzen Ihres Passworts'
+    text: |-
+      Hi Patriot,
+
+      wir haben dir den Braindance auf deinem Host "paragon" abgelegt. Solltest Du dir unbedingt angucken.
+
+      - Cheat

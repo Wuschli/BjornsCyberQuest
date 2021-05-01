@@ -4,5 +4,6 @@
     {
         public string? DefaultHost { get; set; }
         public string? DefaultUser { get; set; }
+        public string? StartupText { get; set; }
     }
 }

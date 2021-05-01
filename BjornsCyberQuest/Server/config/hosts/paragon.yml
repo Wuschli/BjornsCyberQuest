@@ -1,0 +1,26 @@
+﻿files:
+  - name: dance.vid
+    youTube: https://www.youtube.com/embed/dQw4w9WgXcQ
+  - name: smash.vid
+    youTube: https://www.youtube.com/embed/LYG7sMtb6u8
+  - name: bd.vid
+    # youTube: https://www.youtube.com/embed/LYG7sMtb6u8
+  - name: jojo.ai
+    sequence: 'data/jojo.yml'
+    passwords: 
+      - '14052021' # Hochzeit
+      - '27052022' # Hochzeitsfeier
+      - '08052021' # JGA Björn
+      - '08111991' # Geburtstag Björn
+      - '11022020' # Verlobungstag
+      - '13011990' # Geburtstag Johanna
+mails:
+  - timestamp: 2077-04-25T07:11:42
+    from: '"Chief Executive Officer" <CEO@foobar.com>'
+    to: '"Mrs. Johnson" <johnson@foobar.com>'
+    subject: 'Quartalszahlen Q1 2077'
+    text: 'Alles tutti!'
+users:
+  - userName: patriot
+    passwords:
+     - 'favorJUSTtrust51'

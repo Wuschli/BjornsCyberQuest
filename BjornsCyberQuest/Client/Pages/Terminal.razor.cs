@@ -53,6 +53,16 @@ namespace BjornsCyberQuest.Client.Pages
                 _prompt = prompt;
                 await _terminal.Write(prompt);
             });
+            _hubConnection.Closed += async e =>
+            {
+                _ready = false;
+                await _terminal.WriteLine("disconnected...");
+            };
+            _hubConnection.Reconnecting += async e =>
+            {
+                _ready = false;
+                await _terminal.WriteLine("connection lost, reconnecting...");
+            };
 
             await _hubConnection.StartAsync();
         }

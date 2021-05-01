@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BjornsCyberQuest.Server.Data;
 using BjornsCyberQuest.Server.Hubs;
@@ -63,7 +64,14 @@ namespace BjornsCyberQuest.Server.Commands
 
             if (!string.IsNullOrWhiteSpace(file.Text))
             {
-                await host.WriteLine(file.Text);
+                var lines = Regex.Split(file.Text, "\r\n|\r|\n");
+                foreach (var line in lines)
+                {
+                    await host.WriteLine(line.Trim());
+                    await Task.Delay(100);
+                }
+
+                //await host.WriteLine(file.Text);
                 return;
             }
 

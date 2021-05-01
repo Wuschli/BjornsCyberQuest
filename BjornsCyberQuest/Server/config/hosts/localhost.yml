@@ -1,19 +1,35 @@
 ﻿users:
   - userName: 'rexi'
 files:
-  - name: hello.txt
-    text: World!
-  - name: test.vid
-    youTube: https://www.youtube.com/embed/aWZyj1bM08s
-  - name: encrypted.txt
-    text: 'Congratulations! You successfully unencrypted this file!'
-    passwords:
-      - 'password1234'
-  - name: jojo.ai
-    sequence: 'data/jojo.yml'
+  - name: todo.txt
+    text: |-
+      * Bei Kollegen vorstellen
+      * JoJo finden
+
+      Erledigt:
+      * System aufsetzen
+      * Benutzer anlegen
+      * Software installieren
+  - name: hilfe.txt
+    text: |-
+      files.list - listet alle Dateien auf dem derzeitigen Host auf
+      files.open {file: "[filename]"} - öffnet die angegebene Datei
+      mails.list - listet alle Mails auf dem derzeitigen Host auf
+      mails.open {id: 1} - öffnet die Mail mit der angegebenen ID
+      connect {host: "[hostname]"} - stellt die Verbindung zu dem angegebnen Host her
+      
+      Verwenden Sie ArrowUp und ArrowDown um durch die Historie der zuvor verwendeten Kommandos zu navigieren
 mails:
-  - timestamp: 2077-04-25T07:11:42
-    from: '"Chief Executive Officer" <CEO@foobar.com>'
-    to: '"Mrs. Johnson" <johnson@foobar.com>'
-    subject: 'Quartalszahlen Q1 2077'
-    text: 'Alles tutti!'
+  - timestamp: 2076-09-25T08:30:35
+    from: 'Tech Support <TechSupport@BPC-Systems.com>'
+    to: 'Björn Nisse <nisse@BPC-Systems.com>'
+    subject: 'Willkommen bei BPC Systems'
+    text: |-
+      Sehr geehrter Herr Nisse,
+
+      herzlich willkommen bei BPC Systems. Wir haben ihr System erfolgreich eingerichtet.
+      Weitere Dokumente können Sie über den Host "mainframe" einsehen
+
+      Mit freundlichen Grüßen,
+
+      BPC Systems Tech Support
