@@ -4,7 +4,7 @@
   - name: smash.vid
     youTube: https://www.youtube.com/embed/LYG7sMtb6u8
   - name: bd.vid
-    # youTube: https://www.youtube.com/embed/LYG7sMtb6u8
+    youTube: https://www.youtube.com/embed/N47_Gz6RJfY
   - name: jojo.ai
     sequence: 'data/jojo.yml'
     passwords: 
