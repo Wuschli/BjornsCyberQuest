@@ -19,6 +19,8 @@ files:
       connect {host: "[hostname]"} - stellt die Verbindung zu dem angegebnen Host her
       
       Verwenden Sie ArrowUp und ArrowDown um durch die Historie der zuvor verwendeten Kommandos zu navigieren
+  - name: dance.vid
+    youTube: https://www.youtube.com/embed/dQw4w9WgXcQ
 mails:
   - timestamp: 2076-09-25T08:30:35
     from: 'Tech Support <TechSupport@BPC-Systems.com>'
