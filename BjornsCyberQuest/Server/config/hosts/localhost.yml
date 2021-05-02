@@ -19,8 +19,19 @@ files:
       connect {host: "[hostname]"} - stellt die Verbindung zu dem angegebnen Host her
       
       Verwenden Sie ArrowUp und ArrowDown um durch die Historie der zuvor verwendeten Kommandos zu navigieren
+
+      Daten werden per Parameter {} an Kommandos übergeben
+      Parameter bestehen aus einem Key-Value-Paar
+      Der Key ist der Name des Parameters, zB: 'name:', 'file:'
+      Ein Value ist der Inhalt des Parameters, zB: 1, "hilfe.txt"
+
+      Der Schlüssel steht links vom Wert, getrennt durch einen Doppelpunkt  {file: "hilfe.txt"}
+      Kommando und Parameter sind durch ein (oder mehrere) Leerzeichen getrennt.
+      Innerhalb der Klammern {} können beliebig viele Leerzeichen (außerhalb der Anführungszeichen) zur besseren Lesbarkeit verwendet werden.
   - name: dance.vid
     youTube: https://www.youtube.com/embed/dQw4w9WgXcQ
+  - name: jojo.ai
+    sequence: 'data/jojo.yml' # TODO remove from localhost
 mails:
   - timestamp: 2076-09-25T08:30:35
     from: 'Tech Support <TechSupport@BPC-Systems.com>'

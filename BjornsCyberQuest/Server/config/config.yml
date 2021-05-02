@@ -1,5 +1,5 @@
-﻿defaultHost: 'localhost'
-defaultUser: 'rexi'
+﻿defaultHost: "localhost"
+defaultUser: "rexi"
 startupText: |-
   ██████╗ ██████╗  ██████╗    ███████╗██╗   ██╗███████╗████████╗███████╗███╗   ███╗███████╗
   ██╔══██╗██╔══██╗██╔════╝    ██╔════╝╚██╗ ██╔╝██╔════╝╚══██╔══╝██╔════╝████╗ ████║██╔════╝
@@ -7,7 +7,8 @@ startupText: |-
   ██╔══██╗██╔═══╝ ██║         ╚════██║  ╚██╔╝  ╚════██║   ██║   ██╔══╝  ██║╚██╔╝██║╚════██║
   ██████╔╝██║     ╚██████╗    ███████║   ██║   ███████║   ██║   ███████╗██║ ╚═╝ ██║███████║
   ╚═════╝ ╚═╝      ╚═════╝    ╚══════╝   ╚═╝   ╚══════╝   ╚═╝   ╚══════╝╚═╝     ╚═╝╚══════╝
-  
+
   Willkommen bei BPC Systems
 
-  Verwenden sie den 'help' Befehl, um einen Hilfetext azuzeigen
+  Verwenden Sie den 'help' Befehl, um einen Hilfetext azuzeigen
+  Lesen Sie die Hilfedatei mit dem Befehl 'files.open {file: "help.txt"}'
