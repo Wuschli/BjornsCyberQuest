@@ -1,6 +1,6 @@
 users:
   # stehen unter der Tastatur
-  - userName: "phoenix" 
+  - userName: "phoenix"
     passwords:
       - "feltCAUGHTduck84"
   - userName: "lily"
@@ -12,23 +12,81 @@ users:
   - userName: "lambda"
     passwords:
       - "liftTRUSTfinger42"
+files:
+  - name: "song.txt"
+    text: |-
+      Children of the sun, see your time has just begun, searching for your ways, through adventures every day. Every day and night, with the condor in flight, with all your friends in tow, you search for the Cities of Gold. Ah-ah-ah-ah-ah… wishing for The Cities of Gold. Ah-ah-ah-ah-ah… some day we will find The Cities of Gold. Do-do-do-do ah-ah-ah, do-do-do-do, Cities of Gold. Do-do-do-do, Cities of Gold. Ah-ah-ah-ah-ah… some day we will find The Cities of Gold.
+      I never spend much time in school but I taught ladies plenty. It’s true I hire my body out for pay, hey hey. I’ve gotten burned over Cheryl Tiegs, blown up for Raquel Welch. But when I end up in the hay it’s only hay, hey hey. I might jump an open drawbridge, or Tarzan from a vine. ’Cause I’m the unknown stuntman that makes Eastwood look so fine.
+      Ulysses, Ulysses — Soaring through all the galaxies. In search of Earth, flying in to the night. Ulysses, Ulysses — Fighting evil and tyranny, with all his power, and with all of his might. Ulysses — no-one else can do the things you do. Ulysses — like a bolt of thunder from the blue. Ulysses — always fighting all the evil forces bringing peace and justice to all.
+  - name: "source.cs"
+    text: |-
+      using System;
+      namespace HelloWorld
+      {
+      class Program
+      {
+      static void Main(string[] args)
+      {
+      Console.WriteLine("Hello World!");
+      }
+      }
+      }
+  - name: "source.bf"
+    text: |-
+      ++++++++++
+      [
+      >+++++++>++++++++++>+++>+<<<<-
+      ]                       Schleife zur Vorbereitung der Textausgabe
+      >++.                    Ausgabe von 'H'
+      >+.                     Ausgabe von 'e'
+      +++++++.                'l'
+      .                       'l'
+      +++.                    'o'
+      >++.                    Leerzeichen
+      <<+++++++++++++++.      'W'
+      >.                      'o'
+      +++.                    'r'
+      ------.                 'l'
+      --------.               'd'
+      >+.                     '!'
+      >.                      Zeilenvorschub
+      +++.                    Wagenrücklauf
+  - name: "Alansax.txt"
+    text: "Alansax, a monstrous plane of ashen deserts and azure oceans, beneath a golden sky. The plane is primarily populated by demonic ogres."
 mails:
   - timestamp: 2077-02-13T18:33:54
-    from: 'BPC Tech Support <mary66@walsh.org>'
-    to: 'denesik.giovani@morar.com'
-    subject: 'Wichtiger Hinweis zu Ihrem Login'
+    from: "BPC Tech Support <mary66@walsh.org>"
+    to: "denesik.giovani@morar.com"
+    subject: "Wichtiger Hinweis zu Ihrem Login"
     text: |-
       Wir haben Ihr Konto mit dem Login "balthazar" gehackt. Sie haben 24 Stunden Zeit um 50.000 Eddies an folgendes Konto zu überweisen: f1c6d3fc-e914-44b9-b7b4-97bd5aae8e60.
       Ansonsten werden wir alle Ihre Nacktfotos veröffentlichen.
+  - timestamp: 2077-02-13T02:56:00
+    from: "aurelia87@prohaska.com"
+    to: "lynch@BPC-Systems.com"
+    subject: "Hello my gleaming child"
+    text: |-
+      Sonne, immer du noch purpurnen Abschied nimmst,
+      immer doch unbeirrt, immer den Erdentag
+      segnend, der ins Gesicht dir in Finsternis prahlt —
+      wieder vorbei dem Menschenkreis.
+
+      Keines irrenden Sterns zitternder Funke war
+      je verborgener den vom Dunkel Verblendeten
+      als dein flammendes Meer, das den Abend umarmt
+      wie ein brennendes Gottesherz.
+
+      Praise the Sun!
+      Praise Horus!
   - timestamp: 2077-05-08T07:11:42
-    from: 'Tech Support <TechSupport@BPC-Systems.com>'
-    to: 'Alexis Patriot <patriot@BPC-Systems.com>'
-    subject: 'Zurücksetzen Ihres Passworts'
+    from: "Tech Support <TechSupport@BPC-Systems.com>"
+    to: "Alexis Patriot <patriot@BPC-Systems.com>"
+    subject: "Zurücksetzen Ihres Passworts"
     text: |-
       Sehr geehrte Frau Patriot,
 
       wir haben Ihr Passwort für ihr Nutzerkonto "patriot" auf folgenden Wert zurückgesetzt:
-      
+
       favorJUSTtrust51
 
       Bitte beachten Sie, dass Sie das von uns generierte Passwort schnellsmöglich ändern!
@@ -37,15 +95,15 @@ mails:
 
       BPC Systems Tech Support
   - timestamp: 2077-01-21T10:11:26
-    from: 'gracie34@streich.net'
-    to: 'Shanahan Deshaun <deshaun@BPC-Systems.com>'
+    from: "gracie34@streich.net"
+    to: "Shanahan Deshaun <deshaun@BPC-Systems.com>"
     subject: Erwecke den Ritter in dir!
     text: |-
       Entdecke jetzt das neue Spear <Rome>, der Duft, der den Ritter in dir erweckt!
   - timestamp: 2077-03-18T06:48:39
-    from: 'afeil@gleason.com'
-    to: 'Andre Hansen <hansen@BPC-Systems.com>'
-    subject: 'protoLink Media Corporation firmiert um zur Gleason Incorporated'
+    from: "afeil@gleason.com"
+    to: "Andre Hansen <hansen@BPC-Systems.com>"
+    subject: "protoLink Media Corporation firmiert um zur Gleason Incorporated"
     text: |-
       Sehr geehrter Herr Hansen,
 
@@ -56,9 +114,9 @@ mails:
       mit freundlichen Grüßen,
       Asta Feil
   - timestamp: 2077-05-08T07:11:42
-    from: 'Cheat <cheat@raptorface.com>'
-    to: 'Alexis Patriot <patriot@BPC-Systems.com>'
-    subject: 'Braindance'
+    from: "Cheat <cheat@raptorface.com>"
+    to: "Alexis Patriot <patriot@BPC-Systems.com>"
+    subject: "Braindance"
     text: |-
       Hi Patriot,
 
