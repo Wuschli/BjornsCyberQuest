@@ -25,6 +25,8 @@ files:
       Der Key ist der Name des Parameters, zB: 'name:', 'file:'
       Ein Value ist der Inhalt des Parameters, zB: 1, "hilfe.txt"
 
+      Mehrere Key-Value-Paare werden per Komma getrennt, zB: {user: "username", password: "password1234"}
+
       Der Schlüssel steht links vom Wert, getrennt durch einen Doppelpunkt  {file: "hilfe.txt"}
       Kommando und Parameter sind durch ein (oder mehrere) Leerzeichen getrennt.
       Innerhalb der Klammern {} können beliebig viele Leerzeichen (außerhalb der Anführungszeichen) zur besseren Lesbarkeit verwendet werden.
