@@ -12,8 +12,14 @@ users:
   - userName: "lambda"
     passwords:
       - "liftTRUSTfinger42"
-
 mails:
+  - timestamp: 2077-02-13T18:33:54
+    from: 'BPC Tech Support <mary66@walsh.org>'
+    to: 'denesik.giovani@morar.com'
+    subject: 'Wichtiger Hinweis zu Ihrem Login'
+    text: |-
+      Wir haben Ihr Konto mit dem Login "balthazar" gehackt. Sie haben 24 Stunden Zeit um 50.000 Eddies an folgendes Konto zu überweisen: f1c6d3fc-e914-44b9-b7b4-97bd5aae8e60.
+      Ansonsten werden wir alle Ihre Nacktfotos veröffentlichen.
   - timestamp: 2077-05-08T07:11:42
     from: 'Tech Support <TechSupport@BPC-Systems.com>'
     to: 'Alexis Patriot <patriot@BPC-Systems.com>'
@@ -30,6 +36,25 @@ mails:
       Mit freundlichen Grüßen,
 
       BPC Systems Tech Support
+  - timestamp: 2077-01-21T10:11:26
+    from: 'gracie34@streich.net'
+    to: 'Shanahan Deshaun <deshaun@BPC-Systems.com>'
+    subject: Erwecke den Ritter in dir!
+    text: |-
+      Entdecke jetzt das neue Spear <Rome>, der Duft, der den Ritter in dir erweckt!
+  - timestamp: 2077-03-18T06:48:39
+    from: 'afeil@gleason.com'
+    to: 'Andre Hansen <hansen@BPC-Systems.com>'
+    subject: 'protoLink Media Corporation firmiert um zur Gleason Incorporated'
+    text: |-
+      Sehr geehrter Herr Hansen,
+
+      hiermit möchte ich Sie darauf hinweisen, dass die protoLink Media Corporation ihre Geschäfte ab sofort als Gleason Incorporated abwickelt.
+      Bestehende Verträge sind von dieser Änderung nicht betroffen.
+      Beachten Sie bitte, dass die Deadline für das Projekt "Analog Exile" unverändert am 13.10.2077 ist.
+
+      mit freundlichen Grüßen,
+      Asta Feil
   - timestamp: 2077-05-08T07:11:42
     from: 'Cheat <cheat@raptorface.com>'
     to: 'Alexis Patriot <patriot@BPC-Systems.com>'
