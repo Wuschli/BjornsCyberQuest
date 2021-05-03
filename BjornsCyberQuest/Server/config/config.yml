@@ -10,5 +10,5 @@ startupText: |-
 
   Willkommen bei BPC Systems
 
-  Verwenden Sie den 'help' Befehl, um einen Hilfetext azuzeigen
+  Verwenden Sie den 'help' Befehl, um einen Hilfetext anzuzeigen
   Lesen Sie die Hilfedatei mit dem Befehl 'files.open {file: "help.txt"}'
