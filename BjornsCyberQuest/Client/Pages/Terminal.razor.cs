@@ -107,6 +107,7 @@ namespace BjornsCyberQuest.Client.Pages
                     break;
                 case "PageDown":
                 case "PageUp":
+                case "Tab":
                     break;
 
                 case "Insert":
