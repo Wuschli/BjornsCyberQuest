@@ -25,7 +25,7 @@ namespace BjornsCyberQuest.Server.Commands
                 if (file.Passwords == null || !file.Passwords.Any())
                     await host.WriteLine($"  {file.Name}");
                 else
-                    await host.WriteLine($"{"E".Pastel(Color.Coral)} {file.Name}");
+                    await host.WriteLine($"🔒 {file.Name}");
                 await Task.Delay(200);
             }
         }

@@ -5,7 +5,7 @@
     text: "Stellar Monarch: Passenger Shuttle. The Stellar Monarch has an ellipsoid hull with aerodynamic wings. It is equipped with 140 passenger seats and a landing shuttle."
   - name: bd.vid
     youTube: https://www.youtube.com/embed/N47_Gz6RJfY
-  - name: jojo.ai
+  - name: jojo.eng
     sequence: "data/jojo.yml"
     passwords:
       - "14052021" # Hochzeit
