@@ -50,6 +50,7 @@ namespace BjornsCyberQuest.Server.Hubs
         }
 
         public IEnumerable<string> KnownHosts => _hosts.Keys;
+        public string? HelpText => _config?.HelpText;
 
         public string CurrentHost
         {

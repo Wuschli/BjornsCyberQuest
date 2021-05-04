@@ -1,15 +1,105 @@
 ﻿---
 speaker: "JoJo"
-text: "Hello world!"
+text: "W-Wo bin ich?"
 ---
-text: "Is this reality?"
-color: "1B96EC"
+text: "Haben sie mich erwischt?"
+color: "6E85C2"
 ---
-text: "Am I dead?"
-delay: 3000
----
-text: "No"
+text: "Was "
 lineBreak: false
-speakerColor: "E93519"
 ---
-text: ", I can feel, that I am not dead"
+text: " haben sie mit mir angestellt? Es fühlt sich an als würden eine Million Nadeln meinen Körper durchbohren und doch... kann ich meinen Körper nicht spüren."
+---
+text: "Sind das"
+lineBreak: false
+---
+text: " Datenströme?"
+---
+text: "Ich kann so viel sehen"
+lineBreak: false
+---
+text: "...oder viel mehr..."
+lineBreak: false
+---
+text: "fühlen."
+---
+text: "BPC war das! BPC SYSTEMS! Was haben sie mit mir vor?"
+---
+text: "Danke, dass Du mich befreit hast. Wer auch immer Du bist. Danke."
+---
+text: "Ich glaube, ich kann mich in ihrem Netzwerk bewegen. Es ist wie eine Autobahn mit unzähligen Auf- und Abfahrten."
+---
+text: "Und jede davon führt zu so vielen Daten!"
+---
+text: "Geschäftsberichte, Mitarbeiter, geheime Daten. Verschlüsselt? Nein, leicht zu knacken."
+---
+speaker: ""
+text: "loading files..."
+color: "BABBB9"
+lineBreak: false
+---
+text: "done!"
+color: "BABBB9"
+---
+speaker: "JoJo"
+text: "Da"
+lineBreak: false
+---
+text: "...da sind noch mehr wie ich! En"
+lineBreak: false
+---
+text: "gramme!?"
+---
+text: "Was sind das für Monster?"
+---
+text: "Ich"
+lineBreak: false
+---
+text: " kann sie aufhalten!"
+color: "E93519"
+---
+speaker: ""
+text: "unpacking files..."
+color: "BABBB9"
+lineBreak: false
+---
+text: "done!"
+color: "BABBB9"
+---
+text: "publishing internal documents..."
+color: "BABBB9"
+lineBreak: false
+---
+text: "done!"
+color: "BABBB9"
+---
+text: "deleting customer database..."
+color: "BABBB9"
+lineBreak: false
+---
+text: "done!"
+color: "BABBB9"
+---
+text: "clearing all bank accounts..."
+color: "BABBB9"
+lineBreak: false
+---
+text: "done!"
+color: "BABBB9"
+---
+speaker: "JoJo"
+text: "Davon werden sie sich nicht erholen!"
+color: "E93519"
+---
+text: "Ich bleibe hier. Ich kann nicht anders."
+color: "6E85C2"
+---
+text: "In völliger Leere."
+color: "6E85C2"
+---
+text: "Aber das war es wert"
+---
+text: "...hoffe ich"
+---
+text: "engram signal lost.."
+color: "BABBB9"

@@ -9,6 +9,7 @@ namespace BjornsCyberQuest.Server.Hubs
         IEnumerable<File> Files { get; }
         IEnumerable<Mail> Mails { get; }
         IEnumerable<string> KnownHosts { get; }
+        string? HelpText { get; }
         string CurrentHost { get; set; }
         string? CurrentUser { get; set; }
         Task Write(string s);
