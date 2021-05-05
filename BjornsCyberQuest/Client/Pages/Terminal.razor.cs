@@ -21,7 +21,7 @@ namespace BjornsCyberQuest.Client.Pages
         private readonly TerminalOptions _options = new()
         {
             CursorBlink = true,
-            CursorStyle = CursorStyle.underline,
+            CursorStyle = CursorStyle.bar,
             RendererType = RendererType.dom,
             FontFamily = "Consolas",
         };
