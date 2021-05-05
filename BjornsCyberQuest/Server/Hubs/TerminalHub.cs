@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Pastel;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
@@ -112,7 +113,7 @@ namespace BjornsCyberQuest.Server.Hubs
 
         public async Task ClientToServer(string input)
         {
-            var tokens = input.Split(' ', 2, StringSplitOptions.TrimEntries);
+            var tokens = input.Trim().Split(' ', 2, StringSplitOptions.TrimEntries);
             if (tokens.Length == 0)
             {
                 await Ready();
@@ -131,7 +132,8 @@ namespace BjornsCyberQuest.Server.Hubs
                 if (tokens.Length >= 2)
                 {
                     var json = tokens[1];
-                    await command.Execute(this, json);
+                    if (await CheckJson(tokens[0], json))
+                        await command.Execute(this, json);
                 }
                 else
                 {
@@ -158,6 +160,51 @@ namespace BjornsCyberQuest.Server.Hubs
             }
 
             await Ready();
+        }
+
+        private async Task<bool> CheckJson(string command, string json)
+        {
+            json = json.Trim();
+            if (!json.StartsWith('{'))
+            {
+                var index = command.Length + 1;
+                await PrintErrorAtPosition($"{command} {json}", index, "Expected '{'");
+                return false;
+            }
+
+            if (!json.EndsWith('}'))
+            {
+                var index = command.Length + json.Length + 1;
+                await PrintErrorAtPosition($"{command} {json}", index, "Expected '}'");
+                return false;
+            }
+
+            try
+            {
+                JToken.Parse(json);
+            }
+            catch (JsonReaderException e)
+            {
+                var index = command.Length + e.LinePosition + 1;
+                var message = e.Message;
+                if (message.StartsWith("Invalid JavaScript property identifier character"))
+                    message = $"Invalid character '{message[50]}'";
+                else if (message.StartsWith("Unterminated string. Expected delimiter: "))
+                    message = $"Expected matching {message[41]}";
+                else if (message.StartsWith("Invalid property identifier character: "))
+                    message = $"Invalid character '{message[39]}'";
+                await PrintErrorAtPosition($"{command} {json}", index, message);
+                return false;
+            }
+
+            return true;
+        }
+
+        private async Task PrintErrorAtPosition(string input, int index, string error)
+        {
+            await WriteLine(error.Pastel(Color.Red));
+            await WriteLine(input.Pastel(Color.Red));
+            await WriteLine(new string(' ', index) + "^".Pastel(Color.Red));
         }
 
 
