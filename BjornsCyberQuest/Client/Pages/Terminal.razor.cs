@@ -23,7 +23,7 @@ namespace BjornsCyberQuest.Client.Pages
             CursorBlink = true,
             CursorStyle = CursorStyle.bar,
             RendererType = RendererType.dom,
-            FontFamily = "Consolas",
+            FontFamily = "Consolas, Monaco, monospace"
         };
 
         private HubConnection _hubConnection;
