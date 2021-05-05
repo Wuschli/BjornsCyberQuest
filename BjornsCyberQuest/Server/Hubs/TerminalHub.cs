@@ -168,14 +168,14 @@ namespace BjornsCyberQuest.Server.Hubs
             if (!json.StartsWith('{'))
             {
                 var index = command.Length + 1;
-                await PrintErrorAtPosition($"{command} {json}", index, "Expected '{'");
+                await PrintErrorAtPosition($"{command} {json}", index, "Expected opening {");
                 return false;
             }
 
             if (!json.EndsWith('}'))
             {
                 var index = command.Length + json.Length + 1;
-                await PrintErrorAtPosition($"{command} {json}", index, "Expected '}'");
+                await PrintErrorAtPosition($"{command} {json}", index, "Expected matching }");
                 return false;
             }
 
@@ -188,11 +188,15 @@ namespace BjornsCyberQuest.Server.Hubs
                 var index = command.Length + e.LinePosition + 1;
                 var message = e.Message;
                 if (message.StartsWith("Invalid JavaScript property identifier character"))
-                    message = $"Invalid character '{message[50]}'";
+                    message = $"Invalid character {message[50]}";
                 else if (message.StartsWith("Unterminated string. Expected delimiter: "))
                     message = $"Expected matching {message[41]}";
                 else if (message.StartsWith("Invalid property identifier character: "))
-                    message = $"Invalid character '{message[39]}'";
+                    message = $"Invalid character {message[39]}";
+                else if (message.StartsWith("Invalid character after parsing property name. Expected '"))
+                    message = $"Expected {message[57]} after Key";
+                else if (message.StartsWith("Unexpected character encountered while parsing value: "))
+                    message = $"Unexpected character in value {message[54]}";
                 await PrintErrorAtPosition($"{command} {json}", index, message);
                 return false;
             }
